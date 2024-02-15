@@ -6,15 +6,19 @@ import { useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
 import { cartContext } from '../../Context/CartContext'
 export default function FeatureProducts() {  
-  let {AddToCart} = useContext(cartContext)
-  // console.log(AddToCart)
+  let {AddToCart, AddToFavourite} = useContext(cartContext)
   function addCart(id){
     AddToCart(id)
   }
+  function addfacourite(id){
+    AddToFavourite(id)
+  }
+
    function getData(){
     return axios.get("https://ecommerce.routemisr.com/api/v1/products")
    }
    const {data, isLoading} = useQuery('featchData', getData)
+  //  console.log(data)
   return (
     <>
     <div className="container">
@@ -27,14 +31,13 @@ export default function FeatureProducts() {
           width="80"
           color="var(--main-color)"
           ariaLabel="triangle-loading"
-          wrapperStyle={{}}
           wrapperClass=""/> </div>
            : ''}
         
         {data?.data?.data.map((product)=>
         <div key={product.id} className="col-xl-3 col-lg-4 col-sm-6 py-2 cursor-pointer">
           <div className="product px-2 pb-2 position-relative overflow-hidden">
-            <i className="fa-regular fa-heart color-main-light  position-absolute bg-main p-2 rounded-2 "></i>
+            <i className="fa-regular fa-heart color-main-light  position-absolute bg-main p-2 rounded-2 " onClick={()=>addfacourite(product.id)}></i>
             <div className="card-body">
             <Link to={`details/` + product.id}>
             <img src={product.imageCover} className=" w-100" alt={product.imageCover}/>

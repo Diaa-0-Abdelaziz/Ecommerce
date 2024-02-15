@@ -44,13 +44,15 @@ export default function SliderHome() {
   };
   return (
     <>
-      <div className=' mb-5 text-center slider-container'>
+      <div className="container my-5 slider-box">
+      <div className='text-center slider-container'>
         <Slider {...settings}>
           {data?.data?.data.map((data)=><div key={data._id}>
           <img src={data.image} alt={data.image} className='w-100 slider-Height'/>
           <span>{data.name}</span>
           </div>)}
         </Slider>
+      </div>
       </div>
     </>
   )

@@ -34,7 +34,7 @@ export default function Details() {
           wrapperClass=""/> </div>: 
     <div className="container">
     <div className="card card-details mb-3">
-  <div className="row g-0">
+  <div className="row g-0 position-relative">
     <div className="col-md-4 position-relative">
     <SimpleImageSlider
         width="100%"
@@ -66,6 +66,7 @@ export default function Details() {
                 }
                 <div><i className="fa fa-star rating-color"></i>{details.ratingsAverage}</div>
               </div>
+              <i className="fa-regular fa-heart color-main-light bg-main p-2 mt-5 rounded-2 "></i>
               <div className='details-btn cursor-pointer rounded-2' onClick={()=>addCart(details.id)}><i className="fa-solid fa-cart-plus"></i> Add to cart</div>
       </div>
     </div>
