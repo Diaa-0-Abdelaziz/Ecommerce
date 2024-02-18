@@ -63,16 +63,17 @@ export default function Navbar() {
         <li>
         <Link className={`path-Link ${location.pathname === '/brands' ? 'color-main' : ''}`} aria-current="page" to="brands">Brands</Link>
         </li>
-        <li>
-        <Link className={`path-Link ${location.pathname === '/cart' ? 'color-main' : ''}`} to="cart">Cart <span className="badge bg-main">{countOfItems}</span></Link>
-        
-        </li>
-        <li className="nav-item">
-          <Link className={`path-Link ${location.pathname === '/favourites' ? 'color-main' : ''}`} to="favourites">Wishlist <span className="badge bg-danger">{countOfFavourItems}</span></Link>
-        </li>
       </ul>:''}
 
       <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+      <li>
+        <Link className={`path-Link position-relative ${location.pathname === '/cart' ? 'color-main' : ''}`} to="cart"><i className="fa-solid fa-cart-shopping fs-5"></i> <span className=" badge bg-main rounded-circle text-light position-absolute top-50 mt-2 ms-2 translate-middle">{countOfItems}</span></Link>
+        
+        </li>
+        <li className="nav-item">
+          <Link className={`path-Link position-relative ${location.pathname === '/favourites' ? 'color-main' : ''}`} to="favourites"><i className="fa-solid fa-heart fs-5"></i> <span className="badge bg-danger rounded-circle text-light position-absolute top-50 mt-2 ms-1 translate-middle">{countOfFavourItems}</span></Link>
+          
+        </li>
         {token?<li className="nav-item">
           <button className="btn SignOut fw-bold" onClick={checkForLogout}>SignOut</button>
         </li>: <>

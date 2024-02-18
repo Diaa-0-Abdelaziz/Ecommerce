@@ -44,8 +44,8 @@ export default function SliderHome() {
   };
   return (
     <>
-      <div className="container my-5 slider-box">
-      <div className='text-center slider-container'>
+      <div className=" my-5 slider-box container text-main fw-bold mx-auto">
+      <div className='text-center'>
         <Slider {...settings}>
           {data?.data?.data.map((data)=><div key={data._id}>
           <img src={data.image} alt={data.image} className='w-100 slider-Height'/>

@@ -7,11 +7,14 @@ export default function Favourites() {
   const [showFavouriteItems, setShowFavouriteItems] = useState({})
   const [numberOfItems, setNumberOfItems] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
-  let {getFavourItems} = useContext(cartContext)
+  let {AddToCart,getFavourItems} = useContext(cartContext)
   function deleteItem(id){
     console.log("delete", id)
     removeFromFavourite(id)
   }
+   function addCart(id){
+    AddToCart(id)
+   }
    async function removeFromFavourite(id){
     setIsLoading(true)
   
@@ -80,6 +83,7 @@ useEffect(() => {
         <p className='fw-bolder'> Price: {data.price} L.E</p>
         
         <i className="fa-solid fa-xmark p-2 close-btn rounded-2 position-absolute cursor-pointer bottom-0 end-0 m-3" onClick={()=>deleteItem(data.id)}></i>
+        <div className='details-btn cursor-pointer rounded-2' onClick={()=>addCart(data.id)}><i className="fa-solid fa-cart-plus"></i> Add to cart</div>
       </div>
     </div>
 </div>
