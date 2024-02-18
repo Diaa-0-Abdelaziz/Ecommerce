@@ -6,9 +6,19 @@ import SimpleImageSlider from "react-simple-image-slider";
 // import styles from './Details.module.css'
 import { cartContext } from '../../Context/CartContext'
 export default function Details() {
-  let {AddToCart} = useContext(cartContext)
+  let {AddToCart, AddToFavourite,color, setColor} = useContext(cartContext)
   function addCart(id){
     AddToCart(id)
+  }
+  function addfavourite(id){
+    // setColor(...color,id)
+    // setLoad(true)
+     AddToFavourite(id)
+    //  refetch()
+    // setLoad(false)
+
+    // color? console.log("true",id) : console.log("false")
+  
   }
   const [details, setDetails] = useState({})
   const [isLoading, setIsLoading] = useState(true)
@@ -32,7 +42,7 @@ export default function Details() {
           ariaLabel="triangle-loading"
           wrapperStyle={{}}
           wrapperClass=""/> </div>: 
-    <div className="container">
+    <div className="container  mt-5">
     <div className="card card-details mb-3">
   <div className="row g-0 position-relative">
     <div className="col-md-4 position-relative">
@@ -66,7 +76,11 @@ export default function Details() {
                 }
                 <div><i className="fa fa-star rating-color"></i>{details.ratingsAverage}</div>
               </div>
-              <i className="fa-regular fa-heart color-main-light bg-main p-2 mt-5 rounded-2 "></i>
+              { color.includes(details.id)? 
+          (localStorage.getItem('token') ?
+          <i className="fa-solid color-main-light fa-heart cursor-pointer bg-main p-2 rounded-2"></i> : 
+           <i className="fa-regular color-main-light fa-heart cursor-pointer bg-main p-2 rounded-2" onClick={()=>addfavourite(details.id)}></i>): 
+           <i className="fa-regular color-main-light fa-heart cursor-pointer bg-main p-2 rounded-2" onClick={()=>{addfavourite(details.id);  setColor([...color, details.id])}}></i>}
               <div className='details-btn cursor-pointer rounded-2' onClick={()=>addCart(details.id)}><i className="fa-solid fa-cart-plus"></i> Add to cart</div>
       </div>
     </div>

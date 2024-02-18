@@ -22,7 +22,7 @@ export default function Categories() {
 
   return (
     <>
-    <div className="container">
+    <div className="container mt-5">
       <div className="row">
       {isLoading?
         <div className='loading d-flex align-items-center justify-content-center'>
