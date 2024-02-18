@@ -1,10 +1,14 @@
 
 import axios from "axios";
-import { createContext, useState} from "react";
+import { createContext, useState, useEffect} from "react";
 import toast from "react-hot-toast";
 export let cartContext = createContext()
 export default function CartContextProvider(props){
     const [countOfItems, setCountOfItems] = useState(0)
+    const [countOfFavourItems, setCountOfFavourItems] = useState(0)
+    const [color, setColor] = useState([])
+    const [load, setLoad] = useState(null)
+    // console.log(color)
 async function AddToCart(id){
     try {
         const data = await axios.post('https://ecommerce.routemisr.com/api/v1/cart', {
@@ -40,8 +44,14 @@ async function getCartItems(){
     }
 }
 
+useEffect(() => {
+    getCartItems()
+}, [])
+
+
 async function AddToFavourite(id){
     try {
+        // setLoad(true)
         const data = await axios.post('https://ecommerce.routemisr.com/api/v1/wishlist', {
             productId: id
         }, {
@@ -49,8 +59,8 @@ async function AddToFavourite(id){
                 token: localStorage.getItem('token')
             }
         });
-        console.log(data)
-        // setCountOfItems(data.data.numOfCartItems)
+        setCountOfFavourItems(data.data.data.length)
+        console.log(data.data.data.length)
         return (
             successMessage(data.data.message)
             
@@ -70,13 +80,25 @@ async function getFavourItems(){
                 token: localStorage.getItem('token')
             }
         });
-        setCountOfItems(data.data.numOfCartItems)
+        console.log(data.data)
+        const response = data.data.data;
+        setLoad(data.data)
+        const id = response.map(item => item.id);
+        if(data.data.status == "success"){
+            
+            setColor(...color,id)
+        }
+        // console.log(response);
+        setCountOfFavourItems(data.data.count)
         return data;
     } catch (err) {
         console.log(err);
     }
 }
 
+useEffect(()=>{
+    getFavourItems()
+}, [])
 
 
 
@@ -95,7 +117,7 @@ function errorMessage(data){
     toast.error(data)
   }
 
-    return <cartContext.Provider value={{AddToCart, countOfItems, getCartItems, AddToFavourite, getFavourItems}}>
+  return <cartContext.Provider value={{AddToCart, countOfFavourItems, countOfItems, getCartItems, AddToFavourite, getFavourItems, color, setColor, load,setLoad}}>
        {props.children}
     </cartContext.Provider>
 }

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import styles from './FeatureProducts.module.css'
 import axios from 'axios'
 import { Triangle } from 'react-loader-spinner'
@@ -6,18 +6,28 @@ import { useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
 import { cartContext } from '../../Context/CartContext'
 export default function FeatureProducts() {  
-  let {AddToCart, AddToFavourite} = useContext(cartContext)
+ 
+  let {AddToCart, AddToFavourite, color, setColor} = useContext(cartContext)
   function addCart(id){
     AddToCart(id)
   }
-  function addfacourite(id){
-    AddToFavourite(id)
+   function addfavourite(id){
+    // setColor(...color,id)
+    // setLoad(true)
+     AddToFavourite(id)
+    //  refetch()
+    // setLoad(false)
+
+    // color? console.log("true",id) : console.log("false")
+  
   }
 
    function getData(){
     return axios.get("https://ecommerce.routemisr.com/api/v1/products")
    }
    const {data, isLoading} = useQuery('featchData', getData)
+  //  const datw = useQuery('s', getData)
+  //  console.log(datw)
   //  console.log(data)
   return (
     <>
@@ -37,7 +47,11 @@ export default function FeatureProducts() {
         {data?.data?.data.map((product)=>
         <div key={product.id} className="col-xl-3 col-lg-4 col-sm-6 py-2 cursor-pointer">
           <div className="product px-2 pb-2 position-relative overflow-hidden">
-            <i className="fa-regular fa-heart color-main-light  position-absolute bg-main p-2 rounded-2 " onClick={()=>addfacourite(product.id)}></i>
+          { color.includes(product.id)? 
+          (localStorage.getItem('token') ?
+          <i className="fa-solid color-main-light fa-heart position-absolute bg-main p-2 rounded-2"></i> : 
+           <i className="fa-regular color-main-light fa-heart position-absolute bg-main p-2 rounded-2" onClick={()=>addfavourite(product.id)}></i>): 
+           <i className="fa-regular color-main-light fa-heart position-absolute bg-main p-2 rounded-2" onClick={()=>{addfavourite(product.id);  setColor([...color, product._id])}}></i>}
             <div className="card-body">
             <Link to={`details/` + product.id}>
             <img src={product.imageCover} className=" w-100" alt={product.imageCover}/>

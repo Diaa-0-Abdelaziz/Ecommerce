@@ -1,25 +1,15 @@
-import React from 'react'
-import styles from './Categories.module.css'
-import axios from 'axios'
+import React ,{useState, useEffect}from 'react'
 import { Triangle } from 'react-loader-spinner'
-import { useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
-export default function Categories() {
+import axios from 'axios'
+import { useQuery } from 'react-query'
+import styles from './Brands.module.css'
+export default function Brands() {
   function getCategoriesData(){
-    return axios.get("https://ecommerce.routemisr.com/api/v1/categories")
+    return axios.get("https://ecommerce.routemisr.com/api/v1/brands")
    }
    const {data, isLoading} = useQuery('categorData', getCategoriesData)
-  //  console.log(data?.data?.data)
-
-  // function spicifyCategory(id){
-  //   return axios.get(`https://ecommerce.routemisr.com/api/v1/categories/${id}`)
-  //  }
-  //  const spData = useQuery('specifycategorData', spicifyCategory)
-  //  console.log(spData)
-
-
-
-
+   console.log(data?.data?.data)
   return (
     <>
     <div className="container">
@@ -36,13 +26,13 @@ export default function Categories() {
           wrapperClass=""/> </div>
            : ''}
         
-        {data?.data?.data.map((category)=>
-        <div key={category._id} className="col-xl-3 col-lg-4 col-sm-6 py-2 cursor-pointer mt-4">
-          <Link to={ category._id}>
+        {data?.data?.data.map((brand)=>
+        <div key={brand._id} className="col-xl-3 col-lg-4 col-sm-6 py-2 cursor-pointer mt-4">
+          <Link to={brand._id}>
           <div className="product px-2 pb-2 position-relative overflow-hidden">
             <div className="card-body">
-            <img src={category.image} className=" w-100 max-height" alt={category.image}/>
-              <h6 className="card-text text-main fw-bolder pt-2">{category.name}</h6>
+            <img src={brand.image} className=" w-100 max-height" alt={brand.image}/>
+              <p className="card-text text-main fw-bolder text-light text-center fw-bold fs-4 pb-2 bg-main pt-2">{brand.name}</p>
             </div>
           </div>
           </Link>

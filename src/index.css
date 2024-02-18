@@ -71,13 +71,13 @@ a , a:hover{
 {
   left: 0px;
 }
-.fa-regular.fa-heart
+.fa-heart
 {
   right: -50px;
   margin: 5px;
   transition: .5s;
 }
-.product:hover .fa-regular.fa-heart
+.product:hover .fa-heart
 {
   right: 0px;
 }
