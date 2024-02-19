@@ -5,7 +5,7 @@ import { Triangle } from 'react-loader-spinner'
 // import { cartContext } from '../../Context/CartContext'
 import { cartContext } from '../../Context/CartContext'
 export default function Cart() {
-  const [showCartItems, setShowCartItems] = useState({})
+  const [showCartItems, setShowCartItems] = useState(null)
   const [numberOfItems, setNumberOfItems] = useState(0)
   const [finallyTotal, setFinallyTotal] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
@@ -52,21 +52,7 @@ export default function Cart() {
         setShowCartItems(data.data.data.products)
         setFinallyTotal(data.data.data.totalCartPrice)
         }
-        // getCartItems()
-        // cartItems()
-        // setShowCartItems(data.data.data)
-        // setIsLoading(false)
-        
-        // console.log(err);
-        // errorMessage(err)
-
 }
-
-
-
-
-
-
 
 
 
@@ -98,7 +84,7 @@ useEffect(() => {
           ariaLabel="triangle-loading"
           wrapperStyle={{}}
           wrapperClass=""/> </div>:
-  <div className="container">
+  <div className="container mt-5 pt-1">
     {numberOfItems>=1 ? <h2 className=' text-center my-3 bg-main text-light p-2 fw-bolder'>cart Items : {numberOfItems}</h2> : <h2 className=' text-center my-3 bg-danger bg-gradient text-light p-2 fw-bolder'>There are no items in your cart</h2>}
   {showCartItems.map((data)=>
 <div key={data.product._id} className="card my-3">

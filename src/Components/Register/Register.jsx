@@ -77,7 +77,7 @@ export default function Register() {
     <>
     {message? userMessage: ''}
     {error? userErrorMessage: ''}
-    <h1 className='text-dark text-center'>Register</h1>
+    <h1 className='text-dark text-center  mt-5 pt-1'>Register</h1>
     <div className="container">
       <div className="w-75 mx-auto">
       <form onSubmit={formik.handleSubmit}>

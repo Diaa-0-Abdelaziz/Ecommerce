@@ -12,7 +12,7 @@ export default function Brands() {
    console.log(data?.data?.data)
   return (
     <>
-    <div className="container">
+    <div className="container mt-5 pt-1">
       <div className="row">
       {isLoading?
         <div className='loading d-flex align-items-center justify-content-center'>

@@ -53,7 +53,7 @@ export default function FeatureProducts() {
            <i className="fa-regular color-main-light fa-heart position-absolute bg-main p-2 rounded-2" onClick={()=>addfavourite(product.id)}></i>): 
            <i className="fa-regular color-main-light fa-heart position-absolute bg-main p-2 rounded-2" onClick={()=>{addfavourite(product.id);  setColor([...color, product._id])}}></i>}
             <div className="card-body">
-            <Link to={`details/` + product.id}>
+            <Link to={`/details/` + product.id}>
             <img src={product.imageCover} className=" w-100" alt={product.imageCover}/>
               <h6 className="card-text text-main pt-2">{product.category.name}</h6>
               <h5 className="card-title">{product.title.split(" ").slice(0,3).join(' ')}</h5>

@@ -64,7 +64,7 @@ useEffect(() => {
           ariaLabel="triangle-loading"
           wrapperStyle={{}}
           wrapperClass=""/> </div>:
-  <div className="container">
+  <div className="container mt-5 pt-1">
     {numberOfItems>=1 ? <h2 className=' text-center my-3 bg-main text-light p-2 fw-bolder'>Favourites Items : {numberOfItems}</h2> : <h2 className=' text-center my-3 bg-danger bg-gradient text-light p-2 fw-bolder'>There are no items in your wishlist</h2>}
   {showFavouriteItems.map((data)=>
 <div key={data.id} className="card my-3">
