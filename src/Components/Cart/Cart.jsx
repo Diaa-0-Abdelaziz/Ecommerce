@@ -4,12 +4,13 @@ import axios from 'axios';
 import { Triangle } from 'react-loader-spinner'
 // import { cartContext } from '../../Context/CartContext'
 import { cartContext } from '../../Context/CartContext'
+import { Link } from 'react-router-dom';
 export default function Cart() {
-  const [showCartItems, setShowCartItems] = useState(null)
+  // const [showCartItems, setShowCartItems] = useState(null)
   const [numberOfItems, setNumberOfItems] = useState(0)
   const [finallyTotal, setFinallyTotal] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
-  let {getCartItems} = useContext(cartContext)
+  let {getCartItems,showCartItems, setShowCartItems} = useContext(cartContext)
   function deleteItem(id){
     // console.log("delete", id)
     removeFromCart(id)
@@ -35,8 +36,6 @@ export default function Cart() {
 
 }
    async function updateCount(id, count){
-    // setIsLoading(true)
-  
         if(count < 1){
           removeFromCart(id)
         }else{
@@ -57,17 +56,19 @@ export default function Cart() {
 
 
   async function cartItems(){
-    try {
+    
         const data = await getCartItems();
-        setFinallyTotal(data.data.data.totalCartPrice)
-        setNumberOfItems(data.data.numOfCartItems)
-        // setCountOfItems(data.data.numOfCartItems)
-        setShowCartItems(data.data.data.products)
         setIsLoading(false)
-    } catch (err) {
-        console.log(err);
+        if(data?.data.status == "success"){
+        setFinallyTotal(data?.data.data.totalCartPrice)
+        setNumberOfItems(data?.data.numOfCartItems)
+      setShowCartItems(data?.data.data.products)
+    }else{
+      setNumberOfItems(0)
+      console.log(data?.data.status)
+      setShowCartItems(null)
     }
-
+       
 }
 useEffect(() => {
   cartItems()
@@ -85,14 +86,16 @@ useEffect(() => {
           wrapperStyle={{}}
           wrapperClass=""/> </div>:
   <div className="container mt-5 pt-1">
-    {numberOfItems>=1 ? <h2 className=' text-center my-3 bg-main text-light p-2 fw-bolder'>cart Items : {numberOfItems}</h2> : <h2 className=' text-center my-3 bg-danger bg-gradient text-light p-2 fw-bolder'>There are no items in your cart</h2>}
+    {showCartItems && numberOfItems>=1? 
+    <>
+    <h2 className=' text-center my-3 bg-main text-light p-2 fw-bolder'>cart Items : {numberOfItems}</h2> 
   {showCartItems.map((data)=>
 <div key={data.product._id} className="card my-3">
   <div className="row g-0">
-    <div className="col-md-4">
+    <div className="col-md-2">
       <img src={data.product.imageCover} className="img-fluid rounded-start w-100" alt={data.product.imageCover}/>
     </div>
-    <div className="col-md-8 position-relative">
+    <div className="col-md-10 position-relative">
       <div className ="card-body">
         <h5 className="card-title mb-4 fw-bolder">{data.product.title.split(" ").slice(0,3).join(' ')}</h5>
         <ul className=' list-unstyled'>
@@ -106,18 +109,22 @@ useEffect(() => {
         <span className='fw-bolder p-2'>{data.count}</span>
         <i className="fa-solid fa-plus p-2 count-btn rounded-2 cursor-pointer" onClick={()=>updateCount(data.product._id, data.count + 1)}></i>
         </div>
-        <p className='fw-bolder position-absolute bottom-0'>Total: {(data.price)*(data.count)} L.E</p>
+        <p className='fw-bolder position-absolute top-0 end-0 bg-main p-1 text-light'>Total: {(data.price)*(data.count)} L.E</p>
         <i className="fa-solid fa-xmark p-2 close-btn rounded-2 position-absolute cursor-pointer bottom-0 end-0 m-3" onClick={()=>deleteItem(data.product._id)}></i>
       </div>
     </div>
 </div>
 </div>
 )}
-{numberOfItems>=1 ?
 <div className=' d-flex justify-content-around bg-main p-2'>
   <h3 className='fw-bolder'>Total:</h3>
   <h3 className='fw-bolder'>{finallyTotal} L.E</h3>
-</div> : ""}
+</div> 
+<Link className='badge bg-main cursor-pointer p-2 text-light fw-bolder fs-6 mt-2' to="/checkout">
+  Checkout
+</Link>
+</>
+: <h2 className=' text-center my-3 bg-danger bg-gradient text-light p-2 fw-bolder'>There are no items in your cart</h2>}
   </div>
 }
     </>

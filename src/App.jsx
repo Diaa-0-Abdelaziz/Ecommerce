@@ -5,6 +5,8 @@ import Products from "./Components/Products/Products"
 import Register from "./Components/Register/Register"
 import Login from "./Components/Login/Login"
 import Cart from "./Components/Cart/Cart"
+import Checkout from "./Components/Checkout/Checkout"
+import AllOrders from "./Components/AllOrders/AllOrders"
 import Categories from "./Components/Categories/Categories"
 import Brands from "./Components/Brands/Brands"
 import Favourites from "./Components/Favourites/Favourites"
@@ -36,6 +38,8 @@ export default function App() {
         {path:'brands', element:<ProtectedPath><Brands/></ProtectedPath>},
         {path:'favourites', element:<ProtectedPath><Favourites/></ProtectedPath>},
         {path:'cart', element:<ProtectedPath><Cart/></ProtectedPath>},
+        {path:'checkout', element:<ProtectedPath><Checkout/></ProtectedPath>},
+        {path:'allorders', element:<ProtectedPath><AllOrders/></ProtectedPath>},
         {path:'details/:id', element:<ProtectedPath><Details/></ProtectedPath>},
         {path:'categories/:id', element:<ProtectedPath><SpecifCategory/></ProtectedPath>},
         {path:'brands/:id', element:<ProtectedPath><SpecificBrands/></ProtectedPath>},

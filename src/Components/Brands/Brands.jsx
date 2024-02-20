@@ -9,7 +9,7 @@ export default function Brands() {
     return axios.get("https://ecommerce.routemisr.com/api/v1/brands")
    }
    const {data, isLoading} = useQuery('categorData', getCategoriesData)
-   console.log(data?.data?.data)
+  //  console.log(data?.data?.data)
   return (
     <>
     <div className="container mt-5 pt-1">

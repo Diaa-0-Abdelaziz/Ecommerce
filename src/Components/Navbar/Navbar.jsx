@@ -63,6 +63,9 @@ export default function Navbar() {
         <li>
         <Link className={`path-Link ${location.pathname === '/brands' ? 'color-main' : ''}`} aria-current="page" to="brands">Brands</Link>
         </li>
+        <li>
+        <Link className={`path-Link ${location.pathname === '/allorders' ? 'color-main' : ''}`} aria-current="page" to="allorders">Orders</Link>
+        </li>
       </ul>:''}
 
       <ul className="navbar-nav ms-auto mb-2 mb-lg-0">

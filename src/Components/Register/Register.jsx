@@ -35,7 +35,7 @@ export default function Register() {
     }
   })
   async function getData(values){
-    // console.log(values)
+    console.log(values)
     setLoader(true)
    return axios.post("https://ecommerce.routemisr.com/api/v1/auth/signup", values).then((data)=>{
     //  console.log(data)

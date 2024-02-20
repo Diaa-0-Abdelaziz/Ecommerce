@@ -6,8 +6,10 @@ export let cartContext = createContext()
 export default function CartContextProvider(props){
     const [countOfItems, setCountOfItems] = useState(0)
     const [countOfFavourItems, setCountOfFavourItems] = useState(0)
+    const [cartId, setCartId] = useState(null)
     const [color, setColor] = useState([])
     const [load, setLoad] = useState(null)
+    const [showCartItems, setShowCartItems] = useState(null)
     // console.log(color)
 async function AddToCart(id){
     try {
@@ -37,8 +39,15 @@ async function getCartItems(){
                 token: localStorage.getItem('token')
             }
         });
+        if(data.data.status == "success"){
         setCountOfItems(data.data.numOfCartItems)
+        setShowCartItems(data.data.data.products)
+        setCartId(data.data.data._id)
+        console.log(data.data.status)
         return data;
+        }else{
+            setShowCartItems(null)
+        }
     } catch (err) {
         console.log(err);
     }
@@ -80,7 +89,7 @@ async function getFavourItems(){
                 token: localStorage.getItem('token')
             }
         });
-        console.log(data.data)
+        // console.log(data.data)
         const response = data.data.data;
         setLoad(data.data)
         const id = response.map(item => item.id);
@@ -117,7 +126,21 @@ function errorMessage(data){
     toast.error(data)
   }
 
-  return <cartContext.Provider value={{AddToCart, countOfFavourItems, countOfItems, getCartItems, AddToFavourite, getFavourItems, color, setColor, load,setLoad}}>
+  return <cartContext.Provider value={{AddToCart, 
+  countOfFavourItems, 
+  countOfItems, 
+  getCartItems, 
+  AddToFavourite, 
+  getFavourItems, 
+  color, 
+  setColor, 
+  load,
+  setLoad,
+  cartId,
+  setCountOfItems,
+  showCartItems, 
+  setShowCartItems,
+  }}>
        {props.children}
     </cartContext.Provider>
 }

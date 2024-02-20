@@ -1,12 +1,26 @@
-import { createContext, useState } from "react";
+import { jwtDecode } from "jwt-decode";
+import { createContext, useState, useEffect } from "react";
 
 export let tokenContext = createContext();
 
 
 export default function TokenContextProvider(props){
  let [token, setToken] = useState(null);
+ let [decodeToken, setDecodeToken] = useState(null);
+ let getToken = localStorage.getItem("token")
 
- return <tokenContext.Provider value={{token, setToken}}>
+useEffect(() => {
+    if(getToken){
+
+        if(getToken){
+            let {id} = jwtDecode(getToken)
+            setDecodeToken(id)
+            console.log(id)
+        }
+    }
+}, [])
+
+ return <tokenContext.Provider value={{token, setToken,decodeToken}}>
  {props.children}
  </tokenContext.Provider>
 }
