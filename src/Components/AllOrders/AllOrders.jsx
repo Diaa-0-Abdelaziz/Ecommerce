@@ -48,7 +48,7 @@ useEffect(() => {
   {data.cartItems.map((productsOrder)=>
 
 
-  <div className="row g-0 p-2 border-3 bg-gradient bg-success-subtle m-2 rounded-3">
+  <div key={productsOrder._id} className="row g-0 p-2 border-3 bg-gradient bg-success-subtle m-2 rounded-3">
     <div className="col-md-2">
       <img src={productsOrder.product.imageCover} className="img-fluid rounded-start w-100" alt={productsOrder.product.imageCover}/>
     </div>
