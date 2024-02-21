@@ -1,5 +1,4 @@
 import React,{useState, useEffect, useContext} from 'react'
-import styles from './AllOrders.module.css'
 import axios from 'axios';
 import { Triangle } from 'react-loader-spinner'
 import { tokenContext } from '../../Context/TokenContext';
@@ -14,11 +13,9 @@ export default function AllOrders() {
                 token: localStorage.getItem('token')
             }
         });
-        if(data.status == 200){
-          // console.log(data.data)
+          console.log(data.data)
           setOwner(data.data)
           setIsLoading(false)
-        }
     } catch (err) {
         console.log(err);
     }
@@ -62,8 +59,6 @@ useEffect(() => {
         </ul>
         <p className='fw-bolder'> Count: {productsOrder.count}</p>
         <p className='fw-bolder'> Price: {productsOrder.price} L.E</p>
-        {/* <p className='fw-bolder position-absolute top-0 end-0 bg-main p-1 text-light'>Total: {(data.price)*(data.count)} L.E</p> */}
-        {/* <i className="fa-solid fa-xmark p-2 close-btn rounded-2 position-absolute cursor-pointer bottom-0 end-0 m-3" onClick={()=>deleteItem(data.product._id)}></i> */}
       </div>
     </div>
 </div>
@@ -83,7 +78,7 @@ useEffect(() => {
 </div>
 )}
 </>
-: <h2 className=' text-center my-3 bg-danger bg-gradient text-light p-2 fw-bolder'>There are no items in your cart</h2>}
+: <h2 className=' text-center my-5 bg-danger bg-gradient text-light p-2 fw-bolder'>You don't have any order yet</h2>}
   </div>
 }
     </>

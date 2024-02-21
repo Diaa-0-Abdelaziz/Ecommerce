@@ -39,11 +39,11 @@ async function getCartItems(){
                 token: localStorage.getItem('token')
             }
         });
-        if(data.data.status == "success"){
+        console.log(data.data.data._id)
+        if(data){
         setCountOfItems(data.data.numOfCartItems)
         setShowCartItems(data.data.data.products)
         setCartId(data.data.data._id)
-        console.log(data.data.status)
         return data;
         }else{
             setShowCartItems(null)
@@ -52,7 +52,6 @@ async function getCartItems(){
         console.log(err);
     }
 }
-
 useEffect(() => {
     getCartItems()
 }, [])
@@ -89,15 +88,12 @@ async function getFavourItems(){
                 token: localStorage.getItem('token')
             }
         });
-        // console.log(data.data)
-        const response = data.data.data;
         setLoad(data.data)
+        const response = data.data.data;
         const id = response.map(item => item.id);
         if(data.data.status == "success"){
-            
             setColor(...color,id)
         }
-        // console.log(response);
         setCountOfFavourItems(data.data.count)
         return data;
     } catch (err) {
@@ -110,18 +106,10 @@ useEffect(()=>{
 }, [])
 
 
-
-
-
-
-
-
-
-
-
 function successMessage(data){
     toast.success(data)
   }
+
 function errorMessage(data){
     toast.error(data)
   }
@@ -130,16 +118,12 @@ function errorMessage(data){
   countOfFavourItems, 
   countOfItems, 
   getCartItems, 
-  AddToFavourite, 
-  getFavourItems, 
-  color, 
-  setColor, 
-  load,
-  setLoad,
-  cartId,
+  AddToFavourite, getFavourItems, 
+  color, setColor, 
+  load,setLoad,
+  cartId,setCartId,
   setCountOfItems,
-  showCartItems, 
-  setShowCartItems,
+  showCartItems, setShowCartItems,
   }}>
        {props.children}
     </cartContext.Provider>

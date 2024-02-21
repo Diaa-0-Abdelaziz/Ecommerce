@@ -1,5 +1,4 @@
 import React,{useContext, useState} from 'react'
-import styles from './Checkout.module.css'
 import { useFormik } from 'formik'
 import toast from "react-hot-toast";
 import { cartContext } from '../../Context/CartContext'
@@ -8,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Checkout() {
   const [isOnline, setIsOnline] = useState(false)
   let navigate = useNavigate()
-  let {cartId, setCountOfItems} = useContext(cartContext)
+  let {cartId, setCountOfItems, setCartId} = useContext(cartContext)
   function validate(values){
       let errors = {}
       if(!values.city){
@@ -51,7 +50,6 @@ export default function Checkout() {
               }
           });
          toast.success(data.data.status)
-         console.log(data)
          if(isOnline){ 
          window.location.href = data.data.session.url;
          }else{
@@ -59,6 +57,7 @@ export default function Checkout() {
           navigate("/allorders") 
          },3000)
         }
+        setCartId(null)
          setCountOfItems(0)
 
       } catch (err) {

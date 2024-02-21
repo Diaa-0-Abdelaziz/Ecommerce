@@ -19,6 +19,15 @@ body{
   font-weight: bold;
   border-radius: 5px;
 }
+.dropdown-item:hover
+{
+ background-color: var(--light-color);
+ transition: .5s;
+}
+.shadow
+{
+  box-shadow: var(--shadow);
+}
 .loading{
   height: 500px;
   width: 100%;
@@ -182,4 +191,10 @@ a , a:hover{
 .store
 {
   width: 100px;
+}
+/* *******forget-content****** */
+.forget-content
+{
+  margin: 200px 0;
+  padding: 100px 100px;
 }

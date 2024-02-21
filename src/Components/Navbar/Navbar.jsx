@@ -1,5 +1,4 @@
-import React, { useContext } from 'react'
-// import styles from './Navbar.module.css'
+import React, {useState, useContext } from 'react'
 import logo from '../images/freshcart-logo.svg'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { tokenContext } from '../../Context/TokenContext'
@@ -7,12 +6,16 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { cartContext } from '../../Context/CartContext'
 export default function Navbar() {
+  const [openList, setOpenList] = useState(false);
   let location = useLocation()
   let {token,setToken} = useContext(tokenContext)
+  let {countOfItems, countOfFavourItems} = useContext(cartContext)
   let navigate = useNavigate()
   const MySwal = withReactContent(Swal)
-  let {countOfItems, countOfFavourItems} = useContext(cartContext)
-// console.log(countOfItems)
+  
+  function toggleList(){
+    setOpenList(!openList)
+  }
   function checkForLogout(){
     MySwal.fire({
       title: "Are you sure ! ",
@@ -78,9 +81,22 @@ export default function Navbar() {
           <Link className={`path-Link position-relative ${location.pathname === '/favourites' ? 'color-main' : ''}`} to="favourites"><i className="fa-solid fa-heart fs-5"></i> <span className="badge bg-danger rounded-circle text-light position-absolute top-50 mt-2 ms-1 translate-middle">{countOfFavourItems}</span></Link>
           
         </li></>: ''}
-        {token?<li className="nav-item">
+        {token?
+        <>
+        <li className="nav-item">
           <button className="btn SignOut fw-bold" onClick={checkForLogout}>SignOut</button>
-        </li>: <>
+        </li>
+        <li className="nav-item dropdown position-relative">
+          <i className="fa-solid fa-circle-user fs-1 cursor-pointer text-main" onClick={()=>toggleList()}></i>
+          {openList? 
+          <ul className=" position-absolute list-unstyled mt-1 ms-1 bg-main translate-middle-x text-center">
+            <li><Link className="dropdown-item fw-bolder px-2 py-1 cursor-pointer" to="forgotpassword">Forgot password</Link></li>
+            <li><Link className="dropdown-item fw-bolder px-2 py-1 cursor-pointer" to="updatepassword">Updata Password</Link></li>
+            <li><Link className="dropdown-item fw-bolder px-2 py-1 cursor-pointer" to="profile">Profile</Link></li>
+          </ul>:''}
+        </li>
+        </>
+        : <>
         <li className="nav-item">
           <Link className={`path-Link ${location.pathname === '/login' ? 'bg-main' : ''}`} aria-current="login" to="login">Login</Link>
         </li>

@@ -1,5 +1,4 @@
 import React,{ useContext, useState, useEffect} from 'react'
-// import styles from './Favourites.module.css'
 import axios from 'axios';
 import { Triangle } from 'react-loader-spinner'
 import { cartContext } from '../../Context/CartContext'

@@ -3,13 +3,11 @@ import { Triangle } from 'react-loader-spinner'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useQuery } from 'react-query'
-import styles from './Brands.module.css'
 export default function Brands() {
   function getCategoriesData(){
     return axios.get("https://ecommerce.routemisr.com/api/v1/brands")
    }
    const {data, isLoading} = useQuery('categorData', getCategoriesData)
-  //  console.log(data?.data?.data)
   return (
     <>
     <div className="container mt-5 pt-1">

@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import { Triangle } from 'react-loader-spinner'
-import styles from './SpecifCategory.module.css'
 import axios from 'axios'
 export default function SpecifCategory() {
   const [specific, setSpecific] = useState({})
@@ -11,18 +10,13 @@ export default function SpecifCategory() {
   console.log(id)
   async function SpecificCategories(id){
     let {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/categories/` + id)
-    // setDetails(data.data)
-    // console.log(data.data)
     setSpecific(data.data)
     setIsLoading(false)
   }
   async function SubAllSpecificCategories(id){
     let {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/categories/` + id + `/subcategories`)
-    // setDetails(data.data)
     console.log(data.data)
     setSubspecific(data.data)
-    // setSpecific(data.data)
-    // setIsLoading(false)
   }
   useEffect(()=>{
     SpecificCategories(id)

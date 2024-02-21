@@ -1,12 +1,9 @@
 import React,{ useContext, useState, useEffect} from 'react'
-import styles from './Cart.module.css'
 import axios from 'axios';
 import { Triangle } from 'react-loader-spinner'
-// import { cartContext } from '../../Context/CartContext'
 import { cartContext } from '../../Context/CartContext'
 import { Link } from 'react-router-dom';
 export default function Cart() {
-  // const [showCartItems, setShowCartItems] = useState(null)
   const [numberOfItems, setNumberOfItems] = useState(0)
   const [finallyTotal, setFinallyTotal] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
@@ -23,18 +20,11 @@ export default function Cart() {
                 token: localStorage.getItem('token')
             }
         })
-           
-        // console.log(data.data.data.products)
         setShowCartItems(data.data.data.products)
-        // getCartItems()
         cartItems()
-        // setShowCartItems(data.data.data)
         setIsLoading(false)
-        
-        // console.log(err);
-        // errorMessage(err)
-
 }
+
    async function updateCount(id, count){
         if(count < 1){
           removeFromCart(id)
@@ -46,22 +36,18 @@ export default function Cart() {
                 token: localStorage.getItem('token')
             }
         })
-           
-        console.log(data.data.data.products)
         setShowCartItems(data.data.data.products)
         setFinallyTotal(data.data.data.totalCartPrice)
         }
 }
-
-
 
   async function cartItems(){
     
         const data = await getCartItems();
         setIsLoading(false)
         if(data?.data.status == "success"){
-        setFinallyTotal(data?.data.data.totalCartPrice)
-        setNumberOfItems(data?.data.numOfCartItems)
+          setFinallyTotal(data?.data.data.totalCartPrice)
+          setNumberOfItems(data?.data.numOfCartItems)
       setShowCartItems(data?.data.data.products)
     }else{
       setNumberOfItems(0)

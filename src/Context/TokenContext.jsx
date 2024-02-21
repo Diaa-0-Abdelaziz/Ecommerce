@@ -15,7 +15,6 @@ useEffect(() => {
         if(getToken){
             let {id} = jwtDecode(getToken)
             setDecodeToken(id)
-            console.log(id)
         }
     }
 }, [])

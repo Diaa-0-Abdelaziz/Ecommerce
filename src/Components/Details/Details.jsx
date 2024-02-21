@@ -3,25 +3,19 @@ import React, { useEffect, useState, useContext} from 'react'
 import { Triangle } from 'react-loader-spinner'
 import { useParams } from 'react-router-dom'
 import SimpleImageSlider from "react-simple-image-slider";
-// import styles from './Details.module.css'
 import { cartContext } from '../../Context/CartContext'
 export default function Details() {
+  const [details, setDetails] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
   let {AddToCart, AddToFavourite,color, setColor} = useContext(cartContext)
   function addCart(id){
     AddToCart(id)
   }
-  function addfavourite(id){
-    // setColor(...color,id)
-    // setLoad(true)
-     AddToFavourite(id)
-    //  refetch()
-    // setLoad(false)
 
-    // color? console.log("true",id) : console.log("false")
-  
+  function addfavourite(id){
+     AddToFavourite(id)
   }
-  const [details, setDetails] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
+  
   let {id}= useParams()
   async function getDetails(id){
     let {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/products/` + id)
@@ -31,6 +25,7 @@ export default function Details() {
   useEffect(()=>{
     getDetails(id)
   },[])
+  
   return (
     <>
     {isLoading? <div className='loading d-flex align-items-center justify-content-center'>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// import styles from './Register.module.css'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
@@ -38,24 +37,18 @@ export default function Register() {
     console.log(values)
     setLoader(true)
    return axios.post("https://ecommerce.routemisr.com/api/v1/auth/signup", values).then((data)=>{
-    //  console.log(data)
      if(data.data.message === "success"){
       setMessage(data.data.message)
       userMessage(data.data.message)
       navigate('/login')
       setLoader(false)
-
-      
      }
    }).catch((err)=>{
     setError(err.response.data.message)
-    // console.log(err.response.data.message)
     userErrorMessage(err.response.data.message)
     setLoader(false)
    })
   }
-  
-
   
   function userMessage(data){
     MySwal.fire({
