@@ -8,7 +8,7 @@ import { cartContext } from '../../Context/CartContext'
 export default function Navbar() {
   const [openList, setOpenList] = useState(false);
   let location = useLocation()
-  let {token,setToken} = useContext(tokenContext)
+  let {token,setToken,userToken} = useContext(tokenContext)
   let {countOfItems, countOfFavourItems} = useContext(cartContext)
   let navigate = useNavigate()
   const MySwal = withReactContent(Swal)
@@ -94,6 +94,7 @@ export default function Navbar() {
             <li><Link className="dropdown-item fw-bolder px-2 py-1 cursor-pointer" to="updatepassword">Updata Password</Link></li>
           </ul>:''}
         </li>
+        <div className='badge bg-main d-flex align-items-center ms-2'>Hi {userToken}</div>
         </>
         : <>
         <li className="nav-item">
