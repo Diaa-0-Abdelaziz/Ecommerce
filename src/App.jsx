@@ -8,7 +8,6 @@ import Cart from "./Components/Cart/Cart"
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword"
 import ResetPassword from "./Components/ResetPassword/ResetPassword"
 import UpdatePassword from "./Components/UpdatePassword/UpdatePassword"
-import Profile from "./Components/Profile/Profile"
 import Checkout from "./Components/Checkout/Checkout"
 import AllOrders from "./Components/AllOrders/AllOrders"
 import Categories from "./Components/Categories/Categories"
@@ -45,7 +44,6 @@ export default function App() {
         {path:'forgotpassword', element:<ProtectedPath><ForgotPassword/></ProtectedPath>},
         {path:'updatepassword', element:<ProtectedPath><UpdatePassword/></ProtectedPath>},
         {path:'resetPassword', element:<ProtectedPath><ResetPassword/></ProtectedPath>},
-        {path:'profile', element:<ProtectedPath><Profile/></ProtectedPath>},
         {path:'checkout', element:<ProtectedPath><Checkout/></ProtectedPath>},
         {path:'allorders', element:<ProtectedPath><AllOrders/></ProtectedPath>},
         {path:'details/:id', element:<ProtectedPath><Details/></ProtectedPath>},

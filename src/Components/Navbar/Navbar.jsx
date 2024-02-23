@@ -92,7 +92,6 @@ export default function Navbar() {
           <ul className=" position-absolute list-unstyled mt-1 ms-1 bg-main translate-middle-x text-center">
             <li><Link className="dropdown-item fw-bolder px-2 py-1 cursor-pointer" to="forgotpassword">Forgot password</Link></li>
             <li><Link className="dropdown-item fw-bolder px-2 py-1 cursor-pointer" to="updatepassword">Updata Password</Link></li>
-            <li><Link className="dropdown-item fw-bolder px-2 py-1 cursor-pointer" to="profile">Profile</Link></li>
           </ul>:''}
         </li>
         </>

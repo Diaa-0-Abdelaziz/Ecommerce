@@ -1,5 +1,4 @@
 import React, {useContext, useState} from 'react'
-import styles from './FeatureProducts.module.css'
 import axios from 'axios'
 import { Triangle } from 'react-loader-spinner'
 import { useQuery } from 'react-query'
@@ -12,23 +11,13 @@ export default function FeatureProducts() {
     AddToCart(id)
   }
    function addfavourite(id){
-    // setColor(...color,id)
-    // setLoad(true)
      AddToFavourite(id)
-    //  refetch()
-    // setLoad(false)
-
-    // color? console.log("true",id) : console.log("false")
-  
   }
 
    function getData(){
     return axios.get("https://ecommerce.routemisr.com/api/v1/products")
    }
    const {data, isLoading} = useQuery('featchData', getData)
-  //  const datw = useQuery('s', getData)
-  //  console.log(datw)
-  //  console.log(data)
   return (
     <>
     <div className="container">

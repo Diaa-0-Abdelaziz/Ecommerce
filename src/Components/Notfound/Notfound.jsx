@@ -1,6 +1,5 @@
 import React from 'react'
 import notfound from '../images/404.jpg'
-import styles from './Notfound.module.css'
 export default function Notfound() {
   return (
     <>

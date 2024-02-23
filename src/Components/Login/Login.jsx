@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-// import styles from './Login.module.css'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
@@ -30,10 +29,8 @@ const [message, setMessage] = useState(null)
     }
   })
   async function getData(values){
-    // console.log(values)
     setLoader(true)
    return axios.post("https://ecommerce.routemisr.com/api/v1/auth/signin", values).then((data)=>{
-    //  console.log(data)
      if(data.data.message == "success"){
       setMessage(data.data.message)
       userMessage(data.data.message)
@@ -45,7 +42,6 @@ const [message, setMessage] = useState(null)
      }
    }).catch((err)=>{
     setError(err.response.data.message)
-    // console.log(err.response.data.message)
     userErrorMessage(err.response.data.message)
     setLoader(false)
    })

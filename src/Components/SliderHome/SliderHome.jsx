@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './SliderHome.module.css'
 import axios from 'axios'
 import { useQuery } from 'react-query'
 import Slider from "react-slick";

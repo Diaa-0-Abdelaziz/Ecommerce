@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './Categories.module.css'
 import axios from 'axios'
 import { Triangle } from 'react-loader-spinner'
 import { useQuery } from 'react-query'

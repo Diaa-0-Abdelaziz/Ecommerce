@@ -4,8 +4,6 @@ import PayPalLogo from "../images/PayPal-Logo.png"
 import mastercard_logo from "../images/mastercard_logo.svg__3.png"
 import appStore from "../images/app store.png"
 import googlePlay from "../images/google play.png"
-
-import styles from './Footer.module.css'
 export default function Footer() {
   return (
    <>
@@ -16,7 +14,7 @@ export default function Footer() {
     <div className='row'>
   <div className="col-md-9">
   <div className="mb-3">
-    <input type="email" className="form-control" id="exampleInputEmail1"placeholder='Email...' aria-describedby="emailHelp"/>
+    <input type="email" className="form-control" placeholder='Email...' aria-describedby="emailHelp"/>
   </div>
   </div>
   <div className="col-md-3">

@@ -9,7 +9,6 @@ export default function Cart() {
   const [isLoading, setIsLoading] = useState(true)
   let {getCartItems,showCartItems, setShowCartItems} = useContext(cartContext)
   function deleteItem(id){
-    // console.log("delete", id)
     removeFromCart(id)
   }
    async function removeFromCart(id){
@@ -51,8 +50,6 @@ export default function Cart() {
       setShowCartItems(data?.data.data.products)
     }else{
       setNumberOfItems(0)
-      console.log(data?.data.status)
-      setShowCartItems(null)
     }
        
 }

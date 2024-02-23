@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import { Triangle } from 'react-loader-spinner'
-import styles from './SpecificBrands.module.css'
 import axios from 'axios'
 export default function SpecificBrands() {
   const [specific, setSpecific] = useState({})

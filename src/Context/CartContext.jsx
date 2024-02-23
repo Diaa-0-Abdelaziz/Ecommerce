@@ -10,7 +10,6 @@ export default function CartContextProvider(props){
     const [color, setColor] = useState([])
     const [load, setLoad] = useState(null)
     const [showCartItems, setShowCartItems] = useState(null)
-    // console.log(color)
 async function AddToCart(id){
     try {
         const data = await axios.post('https://ecommerce.routemisr.com/api/v1/cart', {
@@ -20,7 +19,6 @@ async function AddToCart(id){
                 token: localStorage.getItem('token')
             }
         });
-        // console.log(data.data.numOfCartItems)
         setCountOfItems(data.data.numOfCartItems)
         return (
             successMessage(data.data.message)
@@ -39,7 +37,6 @@ async function getCartItems(){
                 token: localStorage.getItem('token')
             }
         });
-        console.log(data.data.data._id)
         if(data){
         setCountOfItems(data.data.numOfCartItems)
         setShowCartItems(data.data.data.products)
@@ -59,7 +56,6 @@ useEffect(() => {
 
 async function AddToFavourite(id){
     try {
-        // setLoad(true)
         const data = await axios.post('https://ecommerce.routemisr.com/api/v1/wishlist', {
             productId: id
         }, {
@@ -68,7 +64,6 @@ async function AddToFavourite(id){
             }
         });
         setCountOfFavourItems(data.data.data.length)
-        console.log(data.data.data.length)
         return (
             successMessage(data.data.message)
             
