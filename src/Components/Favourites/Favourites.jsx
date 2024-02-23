@@ -25,24 +25,17 @@ export default function Favourites() {
            
         console.log(data.data)
         getFavourItems()
-        // setShowFavouriteItems(data.data)
         favouriteItems()
-        // setIsLoading(false)
 }
   
 
 
   async function favouriteItems(){
     try {
-      // setIsLoading(true)
       const {data} = await getFavourItems();
-      
       setNumberOfItems(data.count)
-      // setCountOfItems(data.data.numOfCartItems)
-      // setShowCartItems(data.data.data.products)
       setShowFavouriteItems(data.data)
       setIsLoading(false)
-        // console.log(data);
     } catch (err) {
         console.log(err);
     }
@@ -63,7 +56,7 @@ useEffect(() => {
           ariaLabel="triangle-loading"
           wrapperStyle={{}}
           wrapperClass=""/> </div>:
-  <div className="container mt-5 pt-1">
+  <div className="container mt-5 pt-3">
     {numberOfItems>=1 ? <h2 className=' text-center my-3 bg-main text-light p-2 fw-bolder'>Favourites Items : {numberOfItems}</h2> : <h2 className=' text-center my-3 bg-danger bg-gradient text-light p-2 fw-bolder'>There are no items in your wishlist</h2>}
   {showFavouriteItems.map((data)=>
 <div key={data.id} className="card my-3">

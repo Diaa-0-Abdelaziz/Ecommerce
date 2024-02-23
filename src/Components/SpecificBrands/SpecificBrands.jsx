@@ -29,7 +29,7 @@ export default function SpecificBrands() {
           ariaLabel="triangle-loading"
           wrapperStyle={{}}
           wrapperClass=""/> </div>: 
-    <div className="container">
+    <div className="container mt-5 pt-3">
     <div className="card card-details mb-3">
   <div className="row g-0 position-relative">
     <div className="col-md-4 position-relative">
