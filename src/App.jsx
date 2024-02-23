@@ -41,7 +41,7 @@ export default function App() {
         {path:'brands', element:<ProtectedPath><Brands/></ProtectedPath>},
         {path:'favourites', element:<ProtectedPath><Favourites/></ProtectedPath>},
         {path:'cart', element:<ProtectedPath><Cart/></ProtectedPath>},
-        {path:'forgotpassword', element:<ProtectedPath><ForgotPassword/></ProtectedPath>},
+        {path:'forgotpassword', element:<ProtectedAuth><ForgotPassword/></ProtectedAuth>},
         {path:'updatepassword', element:<ProtectedPath><UpdatePassword/></ProtectedPath>},
         {path:'resetPassword', element:<ProtectedPath><ResetPassword/></ProtectedPath>},
         {path:'checkout', element:<ProtectedPath><Checkout/></ProtectedPath>},

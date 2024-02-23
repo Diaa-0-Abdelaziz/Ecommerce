@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { tokenContext } from '../../Context/TokenContext'
 export default function Login() {
 const [message, setMessage] = useState(null)
@@ -84,8 +84,10 @@ const [message, setMessage] = useState(null)
     <input type="password" className="form-control" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.password} name='password' id="exampleInputPassword1"/>
     {formik.touched.password && formik.errors.password ? <p className='text-danger'>{formik.errors.password}</p>: ""}
   </div>
+  <div className='d-flex'>
   {loader? <button className="btn btn-primary"> <i className="fa-solid fa-spinner fa-spin-pulse"></i></button> : <button disabled={!(formik.isValid && formik.dirty)} type="submit" className="btn btn-primary">Login</button>}
-  
+  <Link className="fw-bolder px-2 py-1 text-decoration-underline text-main cursor-pointer" to="/forgotpassword">Forgot password</Link>
+  </div>
 </form>
       </div>
     </div>
