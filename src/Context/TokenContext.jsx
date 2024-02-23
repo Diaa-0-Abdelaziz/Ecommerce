@@ -14,10 +14,9 @@ useEffect(() => {
     if(getToken){
 
         if(getToken){
-            let {id,name,role} = jwtDecode(getToken)
+            let {id,name} = jwtDecode(getToken)
             setDecodeToken(id)
             setUserToken(name)
-            console.log(id,name,role)
         }
     }
 }, [])
