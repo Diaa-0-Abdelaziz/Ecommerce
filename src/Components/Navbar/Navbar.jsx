@@ -80,9 +80,7 @@ export default function Navbar() {
         <li className="nav-item">
           <Link className={`path-Link position-relative ${location.pathname === '/favourites' ? 'color-main' : ''}`} to="favourites"><i className="fa-solid fa-heart fs-5"></i> <span className="badge bg-danger rounded-circle text-light position-absolute top-50 mt-2 ms-1 translate-middle">{countOfFavourItems}</span></Link>
           
-        </li></>: ''}
-        {token?
-        <>
+        </li>
         <li className="nav-item">
           <button className="btn SignOut fw-bold" onClick={checkForLogout}>SignOut</button>
         </li>
@@ -94,7 +92,7 @@ export default function Navbar() {
             <li><Link className="dropdown-item fw-bolder px-2 py-1 cursor-pointer" to="updatepassword">Updata Password</Link></li>
           </ul>:''}
         </li>
-        <div className='badge bg-main d-flex align-items-center ms-2'>Hi {userToken}</div>
+        <div className=' text-main p-2 fw-bolder'>Hi {userToken}</div>
         </>
         : <>
         <li className="nav-item">
