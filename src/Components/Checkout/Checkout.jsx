@@ -39,7 +39,7 @@ export default function Checkout() {
   })
   async function paymentHandeling(shippingAddress){
    let endPoint =  isOnline?
-      `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`
+      `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://ecommerce-six-sage.vercel.app/`
     :
      `https://ecommerce.routemisr.com/api/v1/orders/${cartId}`
     
